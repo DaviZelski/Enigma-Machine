@@ -10,53 +10,42 @@ namespace Enigma_Machine
     {
         private Dictionary<char, char> _plugboardConnections = new Dictionary<char, char>();
 
+
+        private void AddPairs(int pairAmount)
+        {
+            for (int i = 0; i < pairAmount; i++)
+            {
+
+                char Key = 's'; // placeholder
+                char Value = 's'; // placeholder
+
+                Key = char.ToLower(Key);
+                Value = char.ToLower(Value);
+                _plugboardConnections.Add(Key, Value);
+            }
+        }
+
         public void SetupPlugboard()
         {
 
-            int amountOfLetters = 1;
-            bool acceptedSwap = false;
-            Console.WriteLine("How many letters will be swapped? (in multiples of 2, since the swap is between two letters. Max is 26)");
-            while ((amountOfLetters % 2) != 0 && !acceptedSwap)
+            
+
+
+            bool ready = false;
+            
+            while (!ready)
             {
-                amountOfLetters = int.Parse(Console.ReadLine());
+                Console.WriteLine("How many pairs do wish to create? (Maximum is 10!)");
+                int pairAmount = int.Parse(Console.ReadLine());
 
-                if (amountOfLetters < 2)
+                switch (pairAmount)
                 {
-                    Console.WriteLine("Number too low, minimum is 2!");
+                    case > 10:
+                        AddPairs(pairAmount);
+                        break;
                 }
-                else if (amountOfLetters % 2 != 0)
-                {
-                    Console.WriteLine("Number must be a multiple of 2!");
-                }
-                else if (amountOfLetters > 26)
-                {
-                    Console.WriteLine("Number must not be higher than the amount of letters in the alphabet!");
-                }
-                else if (amountOfLetters >= 2 && amountOfLetters <= 26)
-                {
-                    Console.WriteLine($"Swapping {amountOfLetters} letters!");
 
-                    for (int i = 0; i < (amountOfLetters / 2); i++)
-                    {
-                        Console.WriteLine("Please input which letters will be swapped in this format: (OriginalLetter,LetterToSwap)");
-                        string input = Console.ReadLine();
-
-                        input = input.Trim('(', ')');
-                        string[] letters = input.Split(',');
-
-                        char originalLetter = letters[0][0];
-                        char letterToSwap = letters[1][0];
-
-                        Console.WriteLine($"Letters {originalLetter} and {letterToSwap} have been swapped!");
-
-                        // Implement actual swapping with dictionary here...
-                        acceptedSwap = true;
-                    }
-
-                    
-                }
             }
-
 
 
         }
