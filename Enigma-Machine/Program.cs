@@ -8,7 +8,7 @@
             string message = GetMessageFromUser();
             PlugBoard? plugboard = ConfigurePlugboard();
 
-            string encryptedMessage = EncryptMessage(message, plugboard);
+            string encryptedMessage = plugboard.Swap(message);
             Console.WriteLine($"Encrypted message: {encryptedMessage}");
 
             Console.ReadLine();
@@ -61,10 +61,6 @@
             return null;
         }
 
-        static string EncryptMessage(string message, PlugBoard? plugboard)
-        {
-            // Placeholder for encryption logic
-            return message;
-        }
+        
     }
 }

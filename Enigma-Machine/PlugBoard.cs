@@ -8,6 +8,8 @@ namespace Enigma_Machine
 {
     class PlugBoard
     {
+        //missing methods: remove-pair, reset()
+
         private Dictionary<char, char> _plugboardConnections = new Dictionary<char, char>();
 
 
@@ -128,7 +130,44 @@ namespace Enigma_Machine
             Console.WriteLine("--------------------\n");
         }
 
+        
+        public string Swap(string oMessage)
+        {
+            oMessage = oMessage.ToLower();
+            int mLength = oMessage.Length;
+            StringBuilder eMessage = new StringBuilder();
 
+            if (_plugboardConnections.Count == 0)
+            {
+                Console.WriteLine("No connection on the PLugboard,no letters were swapped!\n");
+                return oMessage;
+
+            } else
+            {
+                
+
+                for(int i = 0; i < mLength; i++)
+                {
+                    char charTS = oMessage[i];
+
+                    if (_plugboardConnections.ContainsKey(charTS))
+                    {
+                        char charSP = _plugboardConnections[charTS];
+                        eMessage.Append(charSP);
+                    }
+                    else
+                    {
+                        eMessage.Append(oMessage[i]);
+
+                    }
+
+                }
+            }
+
+
+
+            return eMessage.ToString();
+        }
 
     }
 }
